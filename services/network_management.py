@@ -8,14 +8,14 @@ def get_network_info(option: str, host: str | None = None):
 
     try:
         if option == "A":
-            result = subprocess.check_output(['ipconfig', "/all"], text = True, encoding = "cp852", errors = 'ignore')
+            result = subprocess.check_output(['ipconfig', "/all"], text = True, encoding = "utf-8", errors = 'ignore')
         elif option == "B":
-            result = subprocess.check_output('getmac', text = True, encoding = 'cp852', errors = 'ignore')
+            result = subprocess.check_output('getmac', text = True, encoding = 'utf-8', errors = 'ignore')
         elif option == "C":
             if not host:
                 raise HTTPException(status_code=400, detail = "Host is required!")
-            pattern = r"^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
 
+            pattern = r"^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
             validated_host = re.match(pattern, host) is not None
 
             if validated_host:
