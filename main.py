@@ -7,6 +7,7 @@ from typing import Annotated
 import os
 from dotenv import load_dotenv
 from services.network_management import get_network_info 
+from services.system_management import get_system_info
 import bcrypt
 
 
@@ -71,3 +72,8 @@ def network_api(
 
         return get_network_info(option, host)
 
+
+
+@app.get("/api/system/")
+def system_api():
+    return get_system_info()
