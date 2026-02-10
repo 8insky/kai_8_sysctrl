@@ -11,10 +11,6 @@ def get_network_info(option: str, host: str | None = None):
 
     system = platform.system()
 
-    public_ip = subprocess.check_output(['curl', 'ifconfig.me'], text = True)
-    
-
-
     try:
 
         if option == "A":
@@ -23,7 +19,7 @@ def get_network_info(option: str, host: str | None = None):
             else:
                 result = subprocess.check_output(['ifconfig'], text = True, encoding='utf-8', errors = 'ignore')
         elif option == "B":
-            result = subprocess.check_output('getmac', text = True, encoding = 'utf-8', errors = 'ignore')
+            result = subprocess.check_output(['getmac'], text = True, encoding = 'utf-8', errors = 'ignore')
         elif option == "C":
             if not host:
                 raise HTTPException(status_code=400, detail = "Host is required!")
@@ -42,7 +38,6 @@ def get_network_info(option: str, host: str | None = None):
             raise HTTPException(status = status.HTTP_401_UNAUTHORIZED, detail = 'Not known option')
 
         return {"result": result.strip(),
-                "public_ip": public_ip
                 }
     except Exception as e:
         raise HTTPException(status_code = 500, detail = "nie dziala")
