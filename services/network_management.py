@@ -2,13 +2,26 @@ import subprocess
 import re 
 from fastapi import HTTPException, status
 import socket
+import platform
+
+
 
 
 def get_network_info(option: str, host: str | None = None):
 
+    system = platform.system()
+
+    public_ip = subprocess.check_output(['curl', 'ifconfig.me'], text = True)
+    
+
+
     try:
+
         if option == "A":
-            result = subprocess.check_output(['ipconfig', "/all"], text = True, encoding = "utf-8", errors = 'ignore')
+            if system != 'Linux':
+                result = subprocess.check_output(['ipconfig', "/all"], text = True, encoding = "utf-8", errors = 'ignore')
+            else:
+                result = subprocess.check_output(['ifconfig'], text = True, encoding='utf-8', errors = 'ignore')
         elif option == "B":
             result = subprocess.check_output('getmac', text = True, encoding = 'utf-8', errors = 'ignore')
         elif option == "C":
@@ -28,6 +41,8 @@ def get_network_info(option: str, host: str | None = None):
         else:
             raise HTTPException(status = status.HTTP_401_UNAUTHORIZED, detail = 'Not known option')
 
-        return {"result": result}
+        return {"result": result.strip(),
+                "public_ip": public_ip
+                }
     except Exception as e:
-        raise HTTPException(status_code = '500', detail = "nie dziala")
+        raise HTTPException(status_code = 500, detail = "nie dziala")
