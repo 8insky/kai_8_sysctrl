@@ -11,7 +11,7 @@ from contextlib import asynccontextmanager
 from services.system_stats import monitor_stats, get_latest_stats
 from services.network_management import get_network_info 
 from services.system_management import get_system_info
-from services.network_scanner import scan_network
+# from services.network_scanner import scan_network
 #JUST imports :))
 import bcrypt
 import os
@@ -77,6 +77,8 @@ def read_current_user(credentials: Annotated[HTTPBasicCredentials, Depends(secur
     return credentials.username
 
 
+# app = FastAPI()
+
 
 app.mount(
     "/front",
@@ -104,9 +106,9 @@ async def system_api(username: str = Depends(read_current_user)):
     return data
 
 
-@app.get('/api/scan-network')
-def scan_api_network(username: str = Depends(read_current_user)):
-    return scan_network()
+# @app.get('/api/scan-network')
+# def scan_api_network(username: str = Depends(read_current_user)):
+#     return scan_network()
 
 @app.get('/api/system-stats/')
 def get_stats_api(username: str = Depends(read_current_user)):

@@ -4,68 +4,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Dashboard</title>
+    <title>NEURAL_LINK // PC_DASHBOARD</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="dashboard-wrapper">
+        
+        <h2><span style="color: var(--accent-pink);">⚡</span> System Status</h2>
+        
+        <div class="system-status-container">
+            <div class="info-container">
+                <div class="info-item">
+                    <span>Target ID:</span>
+                    <span id="pc-name" class="data-field">NEURO-RIG-09</span>
+                </div>
+                <div class="info-item">
+                    <span>OS Core:</span>
+                    <span id="pc-os" class="data-field">NightCity Kernel 8.4</span>
+                </div>
+                <div class="info-item">
+                    <span>Netrunner:</span>
+                    <span id="pc-user" class="data-field">GUEST_77</span>
+                </div>
+                <div class="info-item">
+                    <span>Local IPv4:</span>
+                    <span id="pc-ip" class="data-field">192.168.0.104</span>
+                </div>
+                <div class="info-item">
+                    <span>Uptime:</span>
+                    <span id="pc-date" class="data-field">14h 22m 11s</span>
+                </div>
+            </div>
 
+            <div class="statistic-container">
+                <h3>Current Live Usage</h3>
+                
+                <div class="pc_stats">
+                    <div class="stat-header">
+                        <span>CPU OVERDRIVE</span>
+                        <span class="stat-value">68%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill fill-blue"></div>
+                    </div>
+                </div>
 
-    <h2>💻 System Status</h2>
+                <div class="pc_stats">
+                    <div class="stat-header">
+                        <span>RAM ALLOCATION</span>
+                        <span class="stat-value">84%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill fill-warn"></div>
+                    </div>
+                </div>
 
-    <div class="info-container">
-        <div class="info-item">
-            <span>Nazwa PC:</span>
-            <span id="pc-name" class="data-field">Ładowanie...</span>
+                <div class="pc_stats">
+                    <div class="stat-header">
+                        <span>NETWORK I/O</span>
+                        <span class="stat-value">1.2 GB/s</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="info-item">
-            <span>System:</span>
-            <span id="pc-os" class="data-field">Ładowanie...</span>
+
+        <h2><span style="color: var(--accent-blue);">🛠</span> Manage Protocol</h2>
+
+        <div class="manage-grid">
+            <button class="btn btn-restart">
+                <span class="icon">🔄</span> Restart Core
+            </button>
+            <button class="btn btn-shutdown">
+                <span class="icon">🛑</span> Kill Switch
+            </button>
+            <button class="btn btn-logout">
+                <span class="icon">👤</span> Terminate Link
+            </button>
+            <button class="btn btn-update">
+                <span class="icon">✨</span> Sync Data
+            </button>
+            <button class="btn btn-backup">
+                <span class="icon">💾</span> Neural Backup
+            </button>
         </div>
-        <div class="info-item">
-            <span>User:</span>
-            <span id="pc-user" class="data-field">Ładowanie...</span>
-        </div>
-        <div class="info-item">
-            <span>IP:</span>
-            <span id="pc-ip" class="data-field">Ładowanie...</span>
-        </div>
-        <div class="info-item">
-            <span>Data:</span>
-            <span id="pc-date" class="data-field">Ładowanie...</span>
-        </div>
-    </div>
 
-    <h2>🛠 Manage PC</h2>
+        <div class="network_analize">
+            </div>
 
-    <div class="manage-grid">
-        <button class="btn btn-restart">
-            <span class="icon">🔄</span> Restart
-        </button>
-        <button class="btn btn-shutdown">
-            <span class="icon">🛑</span> Wyłącz
-        </button>
-        <button class="btn btn-logout">
-            <span class="icon">👤</span> Wyloguj
-        </button>
-        <button class="btn btn-update">
-            <span class="icon">✨</span> Odśwież
-        </button>
-        <button class="btn btn-backup" style="background-color: var(--accent-blue);">
-            <span class="icon">💾</span> Kopia
-        </button>
-    </div>
-
-
-
-    <div class="network_analize">
-
-
-        <textarea id="output" rows="50" cols="120"></textarea>
     </div>
 
     <script type='module' src="script.js"></script>
-
+    <script type="module" src="script_stats.js"></script>
 </body>
 
 </html>
