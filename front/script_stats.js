@@ -18,7 +18,7 @@ async function update_stats(){
     const response = await fetch("/api/system-stats/", {
         method:'GET',
         headers: {
-            'Authorization': getBasicHeader('admin', 'alamakota'),
+            'Authorization': getBasicHeader('', ''),
             'Content-Type': 'application/json'
         }
     });
