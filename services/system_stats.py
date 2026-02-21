@@ -15,8 +15,10 @@ def check_system_stats():
     }
 
     try:
-        info['CPU Usage'] = psutil.cpu_percent(interval=None)
+        info['CPU Usage'] = psutil.cpu_percent(interval=1)
         info['RAM Usage'] = psutil.virtual_memory().percent
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Did not get any value")
     except PermissionError:
         raise HTTPException(status_code=404, detail='You dont have permissions to do that')
 
