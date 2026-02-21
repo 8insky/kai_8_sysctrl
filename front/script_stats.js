@@ -40,7 +40,7 @@ async function get_system_status(){
         {
         method:'GET',
         headers: {
-            'Authorization': getBasicHeader('admin', 'alamakota'),
+            'Authorization': getBasicHeader('', ''),
             'Content-Type': 'application/json'
         }
     }
